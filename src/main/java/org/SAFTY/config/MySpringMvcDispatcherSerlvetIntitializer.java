@@ -7,6 +7,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 
 public class MySpringMvcDispatcherSerlvetIntitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
@@ -26,6 +28,7 @@ public class MySpringMvcDispatcherSerlvetIntitializer extends AbstractAnnotation
     public void onStartup(ServletContext aServletContext) throws ServletException, ServletException {
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
+
     }
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
