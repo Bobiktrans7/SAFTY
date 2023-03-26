@@ -18,7 +18,6 @@ public class Application {
         this.name = name;
         this.mail = mail;
         this.age = age;
-
     }
 
 
