@@ -24,4 +24,5 @@ public class ApplicationDAO {
         jdbcTemplate.update("INSERT INTO Application VALUES(1, ?, ?, ?)", application.getName(), application.getAge(),
                 application.getMail());
     }
+
 }
