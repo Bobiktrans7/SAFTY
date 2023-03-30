@@ -21,8 +21,7 @@ public class ApplicationDAO {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Application.class));
     }
     public void save(Application application) {
-        jdbcTemplate.update("INSERT INTO Application VALUES(1, ?, ?, ?)", application.getName(), application.getAge(),
+        jdbcTemplate.update("INSERT INTO Application(name, age, mail) VALUES(?, ?, ?)", application.getName(), application.getAge(),
                 application.getMail());
     }
-
 }
