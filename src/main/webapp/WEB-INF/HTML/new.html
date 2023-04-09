@@ -7,15 +7,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="/resources/apple-touch-icon.png">
-    <link rel="stylesheet" href="resources/assets/css/new.css" />
+    <link rel="stylesheet" href="resources/assets/css/new.css">
 </head>
 <body>
 <section class="container">
     <header>Registration Form</header>
-    <form th:method="POST" th:action="@{/HTML}" th:object="${application}">
+    <form th:method="POST" th:action="@{/WEB-INF/HTML}" th:object="${application}">
         <div class="input-box">
             <label>лодо</label>
-            <input type="text" th:field="*{name}" id="name"/>
+            <label for="name"></label><input type="text" th:field="*{name}" id="name"/>
             <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
         </div>
 
