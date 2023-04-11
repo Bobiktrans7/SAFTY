@@ -1,6 +1,6 @@
 package org.SAFTY.dao;
 
-import org.SAFTY.models.Application;
+import org.SAFTY.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,11 +17,8 @@ public class ApplicationDAO {
     public ApplicationDAO(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-    public List<Application> index() {
-        return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Application.class));
-    }
-    public void save(Application application) {
-        jdbcTemplate.update("INSERT INTO Application(name, age, mail) VALUES(?, ?, ?)", application.getName(), application.getAge(),
-                application.getMail());
+    public void save(Client client) {
+        jdbcTemplate.update("INSERT INTO Application(name, phone,gender,type_of_insurance, mail) VALUES(?, ?, ?, ?, ?)", client.getName(),
+                client.getPhone(), client.getGender(), client.getType_of_insurance());
     }
 }

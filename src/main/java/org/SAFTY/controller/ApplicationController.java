@@ -1,7 +1,7 @@
 package org.SAFTY.controller;
 import jakarta.validation.Valid;
 import org.SAFTY.dao.ApplicationDAO;
-import org.SAFTY.models.Application;
+import org.SAFTY.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +23,16 @@ public class ApplicationController {
     }
 
     @GetMapping("/new")
-    public String newPerson(@ModelAttribute("application") Application application) {
+    public String newPerson(@ModelAttribute("application") Client client) {
         return "HTML/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("application") @Valid Application application, BindingResult bindingResult) {
+    public String create(@ModelAttribute("application") @Valid Client client, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "HTML/new";
         }
-        applicationDAO.save(application);
+        applicationDAO.save(client);
         return "redirect:/HTML";
     }
 
