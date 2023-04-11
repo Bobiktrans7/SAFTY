@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan("org.SAFTY")
 @EnableWebMvc
-public class SpringConfig implements WebMvcConfigurer {
+public class    SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
 
