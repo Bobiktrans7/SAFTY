@@ -23,12 +23,12 @@ public class ApplicationController {
     }
 
     @GetMapping("/new")
-    public String newPerson(@ModelAttribute("application") Client client) {
+    public String newPerson(@ModelAttribute("client") Client client) {
         return "HTML/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("application") @Valid Client client, BindingResult bindingResult) {
+    public String create(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "HTML/new";
         }

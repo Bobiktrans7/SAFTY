@@ -11,7 +11,7 @@
 <section class="container">
 
     <header>Registration Form</header>
-    <form th:method="POST" th:action="@{/WEB-INF/HTML}" th:object="${application}">
+    <form th:method="POST" th:action="@{/WEB-INF/HTML}" th:object="${client}">
         <div class="input-box">
             <label>Имя</label>
             <label for="name"></label><input type="text" th:field="*{name}" id="name"/>
