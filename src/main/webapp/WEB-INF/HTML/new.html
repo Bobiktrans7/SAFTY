@@ -11,10 +11,11 @@
 <section class="container">
 
     <header>Registration Form</header>
-    <form th:method="POST" th:action="@{/WEB-INF/HTML}" th:object="${application}">
+    <form th:method="POST" th:action="@{/WEB-INF/HTML}" th:object="${client}">
         <div class="input-box">
             <label>Имя</label>
-            <label for="name"></label><input type="text" th:field="*{name}" id="name"/>
+            <label for="name"></label>
+            <input type="text" th:field="*{name}" id="name"/>
             <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
         </div>
 
@@ -27,7 +28,7 @@
         <div class="column">
             <div class="input-box">
                 <label>Phone Number</label>
-                <input type="number" placeholder="Enter phone number" required />
+                <input type="tel" th:field="*{phone}" id="phone" placeholder="Enter phone number" required />
             </div>
             <div class="input-box">
                 <label>Birth Date</label>
@@ -39,15 +40,11 @@
             <div class="gender-option">
                 <div class="gender">
                     <input type="radio" id="check-male" name="gender" checked />
-                    <label for="check-male">People</label>
+                    <label for="check-male">Male</label>
                 </div>
                 <div class="gender">
                     <input type="radio" id="check-female" name="gender" />
                     <label for="check-female">Female</label>
-                </div>
-                <div class="gender">
-                    <input type="radio" id="check-other" name="gender" />
-                    <label for="check-other">prefer not to say</label>
                 </div>
             </div>
         </div>
