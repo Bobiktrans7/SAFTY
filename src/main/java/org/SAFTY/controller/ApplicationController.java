@@ -1,7 +1,7 @@
 package org.SAFTY.controller;
 import jakarta.validation.Valid;
-import org.SAFTY.dao.ApplicationDAO;
 import org.SAFTY.models.Client;
+import org.SAFTY.services.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/HTML")
 public class ApplicationController {
-    private final ApplicationDAO applicationDAO;
+    private final ApplicationService applicationService;
 
     @Autowired
-    public ApplicationController(ApplicationDAO applicationDAO) {
-        this.applicationDAO = applicationDAO;
+    public ApplicationController(ApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     @GetMapping()
@@ -32,7 +32,7 @@ public class ApplicationController {
         if(bindingResult.hasErrors()){
             return "HTML/new";
         }
-        applicationDAO.save(client);
+        applicationService.save(client);
         return "redirect:/HTML";
     }
 

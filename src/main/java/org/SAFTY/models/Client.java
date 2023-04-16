@@ -1,6 +1,16 @@
 package org.SAFTY.models;
 import jakarta.validation.constraints.*;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Client {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
@@ -16,7 +26,8 @@ public class Client {
 
     }
 
-    public Client(String name, String mail, int phone, String gender, String type_of_insurance) {
+    public Client(int id,String name, String mail, int phone, String gender, String type_of_insurance) {
+        this.id = id;
         this.name = name;
         this.mail = mail;
         this.gender = gender;
@@ -24,6 +35,9 @@ public class Client {
         this.type_of_insurance = type_of_insurance;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -63,6 +77,10 @@ public class Client {
 
     public void setType_of_insurance(String type_of_insurance) {
         this.type_of_insurance = type_of_insurance;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 
