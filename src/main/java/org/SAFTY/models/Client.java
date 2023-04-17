@@ -1,10 +1,9 @@
 package org.SAFTY.models;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.xml.crypto.Data;
 
 public class Client {
     @Id
@@ -21,6 +20,10 @@ public class Client {
     private String mail;
     private String gender;
     private String type_of_insurance;
+    @Column(name = "Birthday")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Data data;
 
     public Client() {
 

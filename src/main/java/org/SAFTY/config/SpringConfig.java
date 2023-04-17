@@ -24,9 +24,6 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * @author Neil Alishev
- */
 @Configuration
 @ComponentScan("org.SAFTY")
 @EnableTransactionManagement
