@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -27,6 +28,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan("org.SAFTY")
 @EnableTransactionManagement
+@PropertySource("")
 @EnableJpaRepositories("org.SAFTY.repositories")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
@@ -50,7 +52,11 @@ public class SpringConfig implements WebMvcConfigurer {
         templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
-
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+    }
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -70,10 +76,10 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/SAFTY");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("q1w2e3r4");
+        dataSource.setDriverClassName(env.getRequiredProperty("hibernate.driver_class"));
+        dataSource.setUrl(env.getRequiredProperty("hibernate.connection.url"));
+        dataSource.setUsername(env.getRequiredProperty("hibernate.connection.username"));
+        dataSource.setPassword(env.getRequiredProperty("hibernate.connection.password"));
 
         return dataSource;
     }
@@ -85,8 +91,8 @@ public class SpringConfig implements WebMvcConfigurer {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.dialect", env.getRequiredProperty("org.hibernate.dialect.PostgreSQLDialect"));
+        properties.put("hibernate.show_sql", env.getRequiredProperty("true"));
 
         return properties;
     }
