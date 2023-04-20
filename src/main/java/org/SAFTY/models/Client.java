@@ -1,5 +1,10 @@
 package org.SAFTY.models;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.xml.crypto.Data;
+import java.util.Date;
+@
 public class Client {
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
@@ -10,6 +15,10 @@ public class Client {
     @Email(message = "Email should be valid")
     private String mail;
     private String gender;
+    @Column(name = "Birthday")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Data data;
     private String type_of_insurance;
 
     public Client() {

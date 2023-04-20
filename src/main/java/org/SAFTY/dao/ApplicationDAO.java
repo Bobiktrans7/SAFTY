@@ -19,6 +19,6 @@ public class ApplicationDAO {
     }
     public void save(Client client) {
         jdbcTemplate.update("INSERT INTO Client(name, phone,gender,type_of_insurance, mail) VALUES(?, ?, ?, ?, ?)", client.getName(),
-                client.getPhone(), client.getGender(), client.getType_of_insurance());
+                client.getPhone(), client.getGender(), client.getType_of_insurance(), client.getMail());
     }
 }
